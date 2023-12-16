@@ -4,7 +4,7 @@ const Home = () => {
   const socialMedias = ["FaInstagram", "FaTwitter", "FaWhatsapp"]
 
   return (
-    <main className="w-full h-auto flex flex-col items-center bg-secondary pt-[220px] pb-[100px] gap-y-[120px]">
+    <main className="w-full h-auto flex flex-col items-center bg-secondary min-h-screen pt-[220px] pb-[100px] gap-y-[120px]">
       <h2 className="text-6xl font-bold text-fourth before:content-['Smart'] before:text-third">Parking</h2>
       <div className="flex flex-col gap-y-[30px]">
         <article className="text-2xl text-fifth">

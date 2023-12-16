@@ -17,11 +17,11 @@ const Vehicles = () => {
   const tableCellClassName = "h-full flex items-center justify-start";
 
   return (
-    <main className="flex flex-col items-center bg-secondary gap-y-[80px] pt-[200px] pb-[70px] overflow-hidden">
+    <main className="flex flex-col items-center bg-secondary gap-y-[80px] pt-[200px] pb-[70px] min-h-screen overflow-hidden">
       <div className="flex flex-col items-center gap-y-[60px] w-full">
         <h2 className="text-5xl text-third font-semibold">Pending Vehicles</h2>
         <Link
-          className="px-5 py-4 text-center bg-green-500 text-primary after:bg-secondary hover:!text-green-500 w-auto max-w-[200px] text-2xl border-green-500"
+          className="px-5 py-4 text-center text-sixth font-semibold max-w-[200px] text-2xl"
           path={"/vehicles/new-vehicle"}
           text={"New Vehicle"}
         />

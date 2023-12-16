@@ -4,6 +4,11 @@ import VehiclesManager from "../managers/vehicles.managers.js"
 const router = Router()
 const vehiclesManager = new VehiclesManager()
 
+router.get("/:id", async (req,res) => {
+  const difference = await vehiclesManager.getEstimatedPrice(req.params.id)
+  res.send(JSON.stringify(difference))
+})
+
 router.get("/", async (req,res) => {
   try {
     const vehicles = await vehiclesManager.getPendingVehicles()
