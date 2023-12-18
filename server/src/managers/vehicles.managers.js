@@ -25,16 +25,30 @@ export default class VehiclesManager {
 
   getEstimatedPrice = async (id) => {
     try {
-      const {entryDateTime} = await pendingVehicleModel.findOne({$or: [{pendingId: id}, {patent: id}]})
-      if (!entryDateTime) return {status: "success", payload: "not found"}
+      const vehicle = await pendingVehicleModel.findOne({$or: [{pendingId: id}, {patent: id}]})
+      if (!vehicle) return {status: "success", payload: "not found"}
+      
+      const entryDateTime = vehicle?.entryDateTime
 
       const now = moment()
-      const difference = now.diff(entryDateTime, "minutes", true)
+      let difference = now.diff(entryDateTime, "minutes", true)
 
-      const hours = (difference - difference%60) / 60
-      const minutes = difference - hours * 60
+      const days = (difference - difference % (60 * 24)) / 60 / 24
+      difference = difference-days*24*60
 
-      return {hours, minutes, fractions: Math.ceil(minutes / 5)}
+      const hours = (difference - difference % 60) / 60
+      difference = difference - hours * 60
+
+      const minutes = difference
+      const fractions = Math.ceil(minutes / 5)
+
+      const response = {
+        exitDateTime: now,
+        ...vehicle
+      }
+
+
+      return {days, hours, minutes, fractions}
     }
     catch(e) {
       console.log("Error:",e)
