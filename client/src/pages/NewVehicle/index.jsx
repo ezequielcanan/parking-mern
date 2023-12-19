@@ -4,16 +4,16 @@ import gsap from "gsap"
 const NewVehicle = () => {
   const [selectedVehicle, setSelectedVehicle] = useState()
   const [inserting, setInserting] = useState(false)
-  console.log("sdasd")
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setInserting(true)
     const button = e.currentTarget.submit
     button.disabled = true
     const body = { patent: e.currentTarget.patent.value, vehicleType: selectedVehicle }
+    e.currentTarget.reset()
     const result = await fetch("http://localhost:8080/api/vehicles", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
     const newVehicle = await result.json()
-
     gsap.set(".insertingState", { marginLeft: 205, marginBottom: 55, duration: 0 })
     gsap.to(".vehicle-on-street", { position: "absolute", left: "620%", bottom: "7%", duration: 1, onComplete: () => gsap.set(".vehicle-on-street", { position: "static", left: 0, onComplete: () => (gsap.set(".insertingState", { marginLeft: 0, marginBottom: 0, duration: 0 }), button.disabled = false, setInserting(false)) }) })
   }

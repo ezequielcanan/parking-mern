@@ -4,10 +4,15 @@ import VehiclesManager from "../managers/vehicles.managers.js"
 const router = Router()
 const vehiclesManager = new VehiclesManager()
 
-router.get("/:id", async (req,res) => {
-  const difference = await vehiclesManager.getEstimatedPrice(req.params.id)
-  console.log(JSON.stringify(difference))
-  res.redirect("http://localhost:5173/vehicles")
+router.get("/payment/:id", async (req,res) => {
+  try {
+    const response = await vehiclesManager.vehiclePayment(req.params.id)
+    res.status(response.statusNumber).json({status: response.status, payload: response.payload})
+  }
+  catch(e) {
+    console.error(e)
+    return res.status(500).json({status: "error", payload: e})
+  }
 })
 
 router.get("/", async (req,res) => {
@@ -21,8 +26,23 @@ router.get("/", async (req,res) => {
   }
 })
 
+router.get("/report", async (req,res) => {
+  try {
+    const {payload: payments} = await vehiclesManager.getPayments()
+    const {payload: total} = await vehiclesManager.getTotalOfPayments()
+    
+    
+    res.json({status: "success", payload: {total, payments}})
+  }
+  catch(e) {
+    console.error(e)
+    return res.status(500).json({status: "error", payload: e})
+  }
+})
+
 router.post("/", async (req,res) => {
   try {
+    console.log("asdasd")
     const {patent, vehicleType} = req.body
     const newVehicle = await vehiclesManager.insertNewVehicle(vehicleType, patent.toUpperCase())
     res.json({status: "success", payload: newVehicle})

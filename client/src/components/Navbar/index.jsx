@@ -16,8 +16,12 @@ const Navbar = () => {
       text: "Report"
     },
     {
-      path: "/monthly",
-      text: "Monthly"
+      path: "/payment",
+      text: "Vehicle Payment"
+    },
+    {
+      path: "/prices",
+      text: "Prices"
     }
   ]
 
