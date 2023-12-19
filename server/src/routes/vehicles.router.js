@@ -6,7 +6,8 @@ const vehiclesManager = new VehiclesManager()
 
 router.get("/:id", async (req,res) => {
   const difference = await vehiclesManager.getEstimatedPrice(req.params.id)
-  res.send(JSON.stringify(difference))
+  console.log(JSON.stringify(difference))
+  res.redirect("http://localhost:5173/vehicles")
 })
 
 router.get("/", async (req,res) => {

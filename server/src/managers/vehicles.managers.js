@@ -4,10 +4,11 @@ import moment from "moment"
 
 export default class VehiclesManager {
   constructor() {
+    this.dateFormat = "YYYY-MM-DD"
     this.dateTimeFormat = "YYYY-MM-DD HH:mm:ss"
     this.prices = {
-      car: [50,600,2400],
-      van: [100,1200,4800],
+      car: [12.5,150,3600],
+      van: [16.6,200,4800],
       bike: [5,60,240],
       motorbike: [5,60,240]
     }
@@ -28,7 +29,7 @@ export default class VehiclesManager {
       const vehicle = await pendingVehicleModel.findOne({$or: [{pendingId: id}, {patent: id}]})
       if (!vehicle) return {status: "success", payload: "not found"}
       
-      const entryDateTime = vehicle?.entryDateTime
+      const entryDateTime = moment(vehicle?.entryDateTime)
 
       const now = moment()
       let difference = now.diff(entryDateTime, "minutes", true)
@@ -42,13 +43,14 @@ export default class VehiclesManager {
       const minutes = difference
       const fractions = Math.ceil(minutes / 5)
 
+      const total = days * this.prices[vehicle.vehicleType][2] + hours * this.prices[vehicle.vehicleType][1] + fractions * this.prices[vehicle.vehicleType][0]
+
       const response = {
-        exitDateTime: now,
-        ...vehicle
+        total,
+        days,hours,minutes
       }
 
-
-      return {days, hours, minutes, fractions}
+      return response
     }
     catch(e) {
       console.log("Error:",e)
