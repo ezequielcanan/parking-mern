@@ -99,8 +99,8 @@ export default class VehiclesManager {
 
   getTotalOfPayments = async () => {
     try {
-      const total = reportModel.aggregate([{$group: {_id: null, total:{$sum:"$total"}}}])
-      return {statusNumber: 200, status: "success", payload: total}
+      const total = await reportModel.aggregate([{$group: {_id: null, total:{$sum:"$total"}}}])
+      return {statusNumber: 200, status: "success", payload: total[0].total}
     }
     catch (e) {
       console.log("Error:", e)

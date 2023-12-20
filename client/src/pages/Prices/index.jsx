@@ -14,7 +14,6 @@ const Prices = () => {
           json.payload.forEach(v => {
             prices[v.vehicle] = {...v}
           })
-          console.log(prices)
           setPrices(prices)
         }
         setLoading(false)

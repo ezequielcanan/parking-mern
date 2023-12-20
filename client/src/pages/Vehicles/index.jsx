@@ -10,7 +10,7 @@ const Vehicles = () => {
     {head: "ID", value: "pendingId"},
     {head: "Patent", value: "patent"},
     {head: "Vehicle Type", value: "vehicleType"},
-    {head: "Entry Date-Time", value: "entryDateTime"}
+    {head: "Entry", value: "entryDateTime"}
   ]
 
   useEffect(() => {

@@ -14,7 +14,6 @@ const VehiclePayment = () => {
       })
   }
 
-  console.log(paid)
   return (
     <main className="w-full h-auto flex flex-col items-center bg-secondary min-h-screen pt-[220px] pb-[100px]">
       <>
