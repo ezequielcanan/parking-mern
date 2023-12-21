@@ -21,7 +21,7 @@ const Prices = () => {
       .catch(console.error)
   }, [])
   return (
-    <main className="h-auto grid grid-cols-2 items-center justify-items-center bg-secondary min-h-screen pt-[220px] pb-[100px]">
+    <main className="h-auto grid md:grid-cols-2 gap-[50px] items-center justify-items-center bg-secondary min-h-screen pt-[220px] pb-[100px]">
       {!loading ? (
         <>
           {Object.keys(prices).map(p => {

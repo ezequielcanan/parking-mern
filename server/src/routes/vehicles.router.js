@@ -40,9 +40,19 @@ router.get("/report", async (req,res) => {
   }
 })
 
+router.get("/generate-report", async (req,res) => {
+  try {
+    const {statusNumber, status, payload} = await vehiclesManager.resetPayments()
+    res.status(statusNumber).send({status, payload})
+  }
+  catch(e) {
+    console.error(e)
+    return res.status(500).json({status: "error", payload: e})
+  }
+})
+
 router.post("/", async (req,res) => {
   try {
-    console.log("asdasd")
     const {patent, vehicleType} = req.body
     const newVehicle = await vehiclesManager.insertNewVehicle(vehicleType, patent.toUpperCase())
     res.json({status: "success", payload: newVehicle})

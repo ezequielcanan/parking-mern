@@ -100,7 +100,18 @@ export default class VehiclesManager {
   getTotalOfPayments = async () => {
     try {
       const total = await reportModel.aggregate([{$group: {_id: null, total:{$sum:"$total"}}}])
-      return {statusNumber: 200, status: "success", payload: total[0].total}
+      return {statusNumber: 200, status: "success", payload: total[0].total || 0}
+    }
+    catch (e) {
+      console.log("Error:", e)
+      return { statusNumber: 500, status: "error", payload: 0 }
+    }
+  }
+
+  resetPayments = async () => {
+    try {
+      await reportModel.deleteMany({})
+      return {statusNumber: 200, status: "success", payload: "Reseted"}
     }
     catch (e) {
       console.log("Error:", e)

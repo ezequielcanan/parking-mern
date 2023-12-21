@@ -3,10 +3,12 @@ import { BarLoader } from "react-spinners"
 import Table from "../../components/Table"
 import jsPDF from "jspdf"
 import html2canvas from "html2canvas"
+import { useNavigate } from "react-router-dom"
 
 const Report = () => {
   const [payments, setPayments] = useState(false)
-  const pdfRef = useRef(null)
+  const pdfRef = useRef(null) 
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch("http://localhost:8080/api/vehicles/report")
@@ -43,10 +45,14 @@ const Report = () => {
       pdf.addImage(imgData, "PNG", imgX, imgY, imgWidth * ratio, imgHeight * ratio)
       pdf.save("Report.pdf")
     })
+    
+    fetch("http://localhost:8080/api/vehicles/generate-report")
+      .then(res => res.json())
+      .then(({payload}) => payload == "Reseted" && navigate("/"))
   }
 
   return (
-    <main className="flex flex-col items-center justify-items-center bg-secondary gap-y-[80px] pt-[200px] pb-[70px] min-h-screen overflow-hidden">
+    <main className="flex flex-col items-center justify-items-center bg-secondary gap-y-[80px] px-[20px] pt-[200px] pb-[70px] min-h-screen overflow-hidden">
       <div className="flex flex-col items-center gap-y-[60px] w-full">
         <h2 className="text-5xl text-third font-semibold">Payments' report</h2>
         <button onClick={generateReport} className="bg-third font-bold text-3xl py-3 px-5">Generate Report</button>
@@ -54,7 +60,7 @@ const Report = () => {
       <div className="w-full flex flex-col items-center gap-y-[80px] bg-secondary" ref={pdfRef}>
         {payments ? (
           <>
-            <h2 className="text-4xl font-bold text-green-400">Total: {payments.total}</h2>
+            <h2 className="text-9xl font-bold text-green-400 mb-[50px] text-center">Total: ${payments.total}</h2>
             <Table cols={cols} data={payments.data} />
           </>
         ) : (

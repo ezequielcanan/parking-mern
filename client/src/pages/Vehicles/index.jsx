@@ -23,7 +23,7 @@ const Vehicles = () => {
   return (
     <main className="flex flex-col items-center bg-secondary gap-y-[80px] pt-[200px] pb-[70px] min-h-screen overflow-hidden">
       <div className="flex flex-col items-center gap-y-[60px] w-full">
-        <h2 className="text-5xl text-third font-semibold">Pending Vehicles</h2>
+        <h2 className="text-5xl text-third font-semibold text-center">Pending Vehicles</h2>
         <Link
           className="px-5 py-4 text-center text-sixth font-semibold max-w-[200px] text-2xl"
           path={"/vehicles/new-vehicle"}

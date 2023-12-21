@@ -27,7 +27,7 @@ const NewVehicle = () => {
   }, [])
 
   return (
-    <main className="flex flex-col items-center bg-secondary gap-y-[20px] pt-[200px] pb-[70px] min-h-screen overflow-hidden">
+    <main className="flex flex-col items-center bg-secondary gap-y-[20px] px-[20px] pt-[200px] pb-[70px] min-h-screen overflow-hidden">
       <h2 className="text-5xl text-third font-semibold">Enter new vehicle:</h2>
       <div className="w-full flex justify-around items-center">
         <img src="/multimedia/images/van.png" className={`w-[15%] vehicle-image duration-300 ${selectedVehicle == "van" ? "selected" : ""}`} alt="" onClick={() => handleVehicleClick("van")} />
