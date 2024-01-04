@@ -2,7 +2,7 @@ import SocialMediaButtons from "../../components/SocialMediaButtons"
 
 
 const Home = () => {
-  const socialMedias = [{name: "FaInstagram", href: "/vehicles"}, {name: "FaGithub", href: "https://github.com/ezequielcanan"}, {name: "FaWhatsapp", href: ""}]
+  const socialMedias = [{name: "FaInstagram", href: "https://www.instagram.com/ezequiel.canan?igsh=bml2ZXcweHRrZmg3"}, {name: "FaGithub", href: "https://github.com/ezequielcanan"}, {name: "FaWhatsapp", href: "https://api.whatsapp.com/send?phone=541126505361"}]
 
   return (
     <main className="w-full h-auto flex flex-col items-center bg-secondary min-h-screen px-[20px] pt-[220px] pb-[100px] gap-y-[120px]">
