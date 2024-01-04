@@ -4,7 +4,7 @@ Smart parking is an open-source web application that helps garages to manage the
 You can contact me to customize the app and the report, this is only a demo.
 
 ## Technologies
-* Node
+* [Node] (https://nodejs.org/en)
 * [React] (https://react.dev/)
 * [Express] (https://expressjs.com/)
 * [MongoDB] (https://www.mongodb.com/)

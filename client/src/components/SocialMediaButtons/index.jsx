@@ -1,9 +1,10 @@
-import {FaInstagram, FaGithub, FaWhatsapp} from "react-icons/fa"
+import {FaInstagram, FaGithub, FaWhatsapp, FaLinkedin} from "react-icons/fa"
 
 const SocialMediaButtons = {
   FaInstagram,
   FaGithub,
-  FaWhatsapp
+  FaWhatsapp,
+  FaLinkedin
 }
 
 export default SocialMediaButtons
